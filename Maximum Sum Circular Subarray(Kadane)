@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int maxSubarraySumCircular(vector<int>& nums) {
+        
+        int total = 0, maxsum = INT_MIN, minsum = INT_MAX;
+        int curmax = 0, curmin = 0;
+
+        for(int num: nums){
+
+            curmax = max(num , curmax+num);
+            maxsum = max(maxsum , curmax);
+
+            curmin = min(num , curmin + num);
+            minsum = min(minsum , curmin);
+
+            total+=num;
+
+            
+        }
+        
+        if(maxsum < 0)return maxsum;
+
+        return max(maxsum , total-minsum);
+    }
+};
