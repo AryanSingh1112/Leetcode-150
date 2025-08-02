@@ -1,0 +1,36 @@
+class Solution {
+public:
+    void gameOfLife(vector<vector<int>>& board) {
+    
+    vector<vector<int>>prev = board;
+    int n = prev.size() , m = prev[0].size();
+    int cnt1;
+    
+    for(int i=0 ; i<n ; i++){
+        
+        
+        for(int j=0;j<m;j++){
+            
+            cnt1=0;
+            
+            if (j+1 < m && prev[i][j+1] == 1) cnt1++;
+            if (i+1 < n && prev[i+1][j] == 1) cnt1++;
+
+            
+            if(i-1 >= 0 && j-1>=0 && prev[i-1][j-1])cnt1++;
+            if(i+1 < n && j-1>=0 && prev[i+1][j-1])cnt1++;
+            if(i-1 >= 0 && j+1<m && prev[i-1][j+1])cnt1++;
+            if(i+1<n && j+1< m && prev[i+1][j+1])cnt1++;
+            if(i<n && j-1>=0 && prev[i][j-1])cnt1++;
+            if(i-1>=0 && j< m && prev[i-1][j])cnt1++;
+            
+            if(cnt1==3)board[i][j] = 1;
+            if(cnt1<2)board[i][j]=0;
+            if(cnt1>3)board[i][j] = 0;
+            
+        }
+    }
+
+        
+}
+};
