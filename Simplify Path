@@ -1,0 +1,52 @@
+class Solution {
+public:
+    string simplifyPath(string path) {
+        
+        vector<string>components;
+        string current;
+        
+    for (int i = 0; i < path.size(); ++i) {
+        if (path[i] == '/') {
+            if (!current.empty()) {
+                components.push_back(current);
+                current.clear();
+            }
+        } else {
+            current += path[i];
+        }
+    }
+
+    // Add last component if it's not empty
+    if (!current.empty()) {
+        components.push_back(current);
+    }
+
+    vector<string>st;
+
+    for(const string&dir : components){
+
+        if(dir=="." || dir.empty()){
+            continue;
+        }
+
+        else if(dir==".."){
+            if(!st.empty()){
+            st.pop_back();
+            }
+        }
+
+        else st.push_back(dir);
+    }
+
+    string result = "/";
+
+    for(int i=0;i<st.size();i++){
+        result+=st[i];
+        if(i!=st.size()-1)result+='/';
+    }
+
+    return result;
+
+}
+    
+};
