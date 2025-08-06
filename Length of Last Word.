@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        
+        int n = s.length();
+        int length = 0;
+        string word = "";
+        bool started = false;
+
+        for(int i=n-1 ; i>=0 ; i--){
+
+            if(s[i]!= ' '){
+                word+=s[i];
+                length++;
+
+                started = true;
+            }
+
+            else if(started){
+                break;
+            }
+        }
+
+        return length;
+    }
+};
